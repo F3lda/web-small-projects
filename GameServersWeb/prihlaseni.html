@@ -1,0 +1,60 @@
+﻿<html>
+	<head>
+	<title>Přihlášení</title>
+	</head>
+      <body bgcolor="lime">
+	  <h1 style="text-align: center">|OurServers.cz| Přihlášení |OurServers.cz|</h1>
+	  <img align="left" src="CSgo.jpg" alt="CS:GO">
+	  <img align="right" src="Minecraft.png" alt="Minecraft">
+	<hr>
+<table align="center" border="1" cellpadding="6" cellspacing="0">
+	<tr>
+		<th><a href="./">Hlavní stránka</a></th>
+		<th><a href="servery.html">Servery</a></th>
+		<th><a href="prihlaseni.html">Přihlášení</a></th>
+		<th><a href="registrovani.html">Registrovaní hráči</a></th>
+		<th><a href="pravidla.html">Pravidla</a></th>
+	</tr>
+</table>	
+	  <hr>
+	<hr>
+	<h1 style="text-align: left">Přihlášení pro hesla k serverům</h1>
+	
+	<hr>
+	
+<!-- ZAČÁTEK PŘIHLÁŠENÍ --> 	
+<script language="javascript"> 
+function check_login_form(form)
+{
+	if(form.jmeno.value == "")
+	{
+		alert("Nebylo vyplněno pole 'Jméno'");
+		form.jmeno.focus();
+		return true;
+	}
+	if(form.heslo.value == "")
+	{
+		alert("Nebylo vyplněno pole 'Heslo'");
+		form.heslo.focus();
+		return true;
+	}
+	return false;
+}
+</script>	
+	
+<form name="formular" action="prihlaseni.html" onsubmit="return check_login_form(this);">
+<table border="0" cellpadding="0" cellspacing="2">
+<tr><td>Jméno: </td><td><input type="text" size="10" name="jmeno"></td></tr>
+<tr><td>Heslo: </td><td><input type="password" size="10" name="heslo"></td></tr>
+<tr><td></td><td><input type="submit" value="Přihlásit" onclick="window.location.href = 'ucet/' + document.formular.jmeno.value + '-' + document.formular.heslo.value + '.html' "></td></tr>
+</table><a href="registrace.html">Registrace</a>
+</form>
+<!-- KONEC PŘIHLÁŠENÍ -->
+
+	<hr>
+	</body>	
+</html>
+
+
+
+

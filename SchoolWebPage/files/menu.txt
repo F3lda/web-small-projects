@@ -1,0 +1,28 @@
+	<div id="web_title">
+		<a href="http://www.gvid.cz/"><img id="title_photo" src="<?php echo $address; ?>styles/title_photo.png" alt="title photo" /></a>
+		<a id="class" href="./<?php echo $address; ?>">II.G</a>
+	</div>
+	<div id="menutable">
+		<ul id="menu">
+			<li>
+				<a href="./<?php echo $address; ?>">Aktuality</a>
+			</li>
+			<li class="mborder">|</li>
+			<li>
+				<a href="./<?php echo $address; ?>o-nas/">O naší třídě</a>
+			</li>
+			<li class="mborder">|</li>
+			<li>
+				<a href="./<?php echo $address; ?>kalendar/">Kalendář</a>
+				<ul>
+					<li><a href="./<?php echo $address; ?>kalendar/?date=<?php if(Date('m') < 7){echo Date('dm'); echo Date('Y')-1;}else{echo Date('dmY');} ?>">Dnes</a></li>
+					<li><a href="./<?php echo $address; ?>kalendar/?date=tomorrow">Zítra</a></li>
+					<li><a href="./<?php echo $address; ?>kalendar/?date=thisweek">Tento týden</a></li>
+				</ul>
+			</li>
+			<li class="mborder">|</li>
+			<li>
+				<a href="./<?php echo $address; ?>odkazy/">Odkazy</a>
+			</li>
+		</ul>
+	</div>

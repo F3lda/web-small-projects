@@ -1,0 +1,69 @@
+<html>
+	<head>
+	<meta http-equiv="Content-language"	content="cz"/>
+	<meta http-equiv="Content-Type"		content="text/html; charset=windows-1250"/>
+	<title>Přihlášen - FatBygg_zero</title>
+	</head>
+	<body bgcolor="lime">
+	 <h1>Přihlášení</h1>
+
+	 
+<b>Přihlášen: FatBygg_zero</b>
+
+
+<p style="text-align: left"><a href="../prihlaseni.html"><strong>Odhlásit se</strong></a>
+<a href="FatBygg_zero-stavuctu.html" onclick="return !window.open(this.href,'','');"><strong>Vyúčtování</strong></a></p>
+
+
+<strong>
+<script>
+var datum = new Date(); // aktuální datum
+var denVTydnu = new Array("neděle","pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota");
+var retezec = "Dnes je "; // postupně se k němu budou přičítat další řetězce
+retezec += denVTydnu[datum.getDay()] + ", "; // Den v týdnu
+retezec += datum.getDate() + ". "; // Den v měsíci
+retezec += (1 + datum.getMonth()) + ". "; // Měsíce jsou číslovány od nuly
+retezec += datum.getFullYear() + ". "; // Rok ve formátu 0000
+retezec += "Čas: " + datum.getHours() + ":"; // Hodiny
+retezec += datum.getMinutes(); // Minuty
+// retezec += ":" + datum.getSeconds(); // Sekundy
+retezec += "."; // Tečka za větou
+document.write( retezec ); // Výpis řetězce do dokumentu
+</script>
+</strong>
+
+
+<hr>
+	<h2 style="text-align: center">Hesla</h2>
+	
+<form action="prikoupeni.php" target="_blank" method="post">	
+<table align="center" border="1" cellpadding="6" cellspacing="0">
+		<tr>
+		<th>Hra</th>
+		<th>Heslo</th>
+		<th>IP adresa</th>
+		<th>Tvůj stav k serveru</th>
+		<th>Na server máš přístup do:</th>
+	</tr>
+	<tr>
+		<td>MineCraft</td>
+		<td>WHITE LIST</td>
+		<td>---</td>
+		<td>---</td>
+		<td>---<input type="hidden" name="jmeno" size="20" value="FatBygg_zero" />
+				  <input type="submit" id="remember" name="remember" value="" />
+				  <label for="remember" title="Klini na toto tlačítko jen jednou za měsíc. Pokud nebudeš mít žádný kredit, na server nebudeš mít dále přístup!">Chci být na serveru dálší měsíc.</label></td>
+	</tr>
+</table>
+</form>
+<h3 style="text-align: center">Nezapomeň zaplatit do 30.!</h3>
+<hr>
+<h2 style="text-align: center">Minecraft server</h2>
+<table align="center" border="1" cellpadding="6" cellspacing="0">
+	<tr>
+		<td>--------------------------------------------------------------------------------------<h2 style="text-align: center">Minecraft server</h2>--------------------------------------------------------------------------------------</td>
+	</tr>
+</table>
+	  
+</body>
+</html>

@@ -1,2 +1,2 @@
-# Web-projects-by-F3lda
-HTML, CSS, JavaScript, PHP and more WEB small projects and exmaples
+# Small Web Projects
+HTML, CSS, JavaScript and PHP web small projects and exmaples

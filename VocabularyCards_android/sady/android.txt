@@ -1,0 +1,3 @@
+jablko=die Apfel=
+auto=das Auto=
+oøech=die Erbse=

@@ -1,0 +1,53 @@
+<html>
+	<head>
+	<meta http-equiv="Content-language"	content="cz"/>
+	<meta http-equiv="Content-Type"		content="text/html; charset=windows-1250"/>
+	<title>Vyúčtování - Večírek</title>
+	</head>
+<body text="#FFFFFF" bgcolor="#000033">
+
+<h1>Vyúčtování</h1>
+
+<h2>Účet: Večírek</h2>
+<h2>Stav účtu nyní: 0 Kč</h2>
+<strong>
+<script>
+var datum = new Date(); // aktuální datum
+var denVTydnu = new Array("neděle","pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota");
+var retezec = "Dnes je "; // postupně se k němu budou přičítat další řetězce
+retezec += denVTydnu[datum.getDay()] + ", "; // Den v týdnu
+retezec += datum.getDate() + ". "; // Den v měsíci
+retezec += (1 + datum.getMonth()) + ". "; // Měsíce jsou číslovány od nuly
+retezec += datum.getFullYear() + ". "; // Rok ve formátu 0000
+retezec += "Čas: " + datum.getHours() + ":"; // Hodiny
+retezec += datum.getMinutes(); // Minuty
+// retezec += ":" + datum.getSeconds(); // Sekundy
+retezec += "."; // Tečka za větou
+document.write( retezec ); // Výpis řetězce do dokumentu
+</script>
+</strong>
+<hr>
+
+<table align="center" border="1" cellpadding="6" cellspacing="0">
+	<caption>Vyúčtování</caption>
+	<tr>
+		<th>Měsíc platby</th>
+		<th>Kč</th>
+		<th>Stav</th>
+		<th>Stav účtu po platbě</th>
+	</tr>
+	<tr>
+		<td>---</td>
+		<td>---</td>
+		<td>---</td>
+		<td>--- Kč</td>
+	</tr>
+</table>
+
+<button onclick="window.close()">Zavřít</button>
+<hr>
+
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿/* ----- BODY ----- */
+body {font-family: Times New Roman, serif; text-align: center; background-color: LightBlue;}
+#main {text-align: left; margin: 0px auto; width: 1080px; min-width: 1080px; position: relative; height: 30px;}
+
+/* ----- MENU - Nadpis ----- */
+#web_title {background-color: LightYellow; width: 1050px; height: 190px; border-radius: 10px; position: absolute; top: 12px; left: 15px; border: 2px solid rgb(55, 71, 255); box-shadow: rgb(56, 56, 56) 4px 15px 6px;}
+#class {font-family: Times New Roman, serif; font-size: 180px; text-shadow: 2px 2px rgb(56, 56, 56); position: absolute; top: 7px; left: 752px; color: rgb(0, 184, 0); line-height: 140px; text-decoration: none;}
+#title_photo {width: 730px; height: 125px; position: absolute; top: 15px; left: 15px; border-top-left-radius: 8px; border-bottom-left-radius: 8px;}
+
+/* ----- MENU - Funkční část ----- */
+#menu li {display: table-cell; list-style: none;}
+#menu li ul {display: none; position: absolute; padding: 0px;}
+#menu li ul li {display: block;}
+#menu li:hover ul {display: block;}
+
+/* ----- MENU - Vzhledová část ----- */
+#menutable {position: absolute; top: 180px; left: 15px;}/* Nastavení pozice tabulky */
+#menu {border: 2px solid DarkGreen; padding: 3.5px; background-color: royalblue; border-radius: 10px; width: 1043px; margin: 0px;}/* Nastylování menu tabulky */
+#menu li {padding: 6px;}/* Zvětšení padding buněk */
+#menu li a, .mborder {text-decoration: none; color: white; font-size: 18px; padding: 10px;}/* Nastavení dekorace, barvy, velikosti fontu a padding buněk */
+#menu li:hover a {background-color: rgb(0, 180, 180);}/* Změna barvy pozadí buňky po najetí myší */
+
+#menu li ul li {background-color: rgb(0, 180, 180); border-left: 2px solid DarkGreen; border-right: 2px solid DarkGreen; position: relative; top: 9.5px; left: 0px;}/* Nastylování podseznamu */
+#menu li ul li a {padding: 3px;}/* Zmenšení padding odkazu */
+#menu li ul li a:hover {position: relative; left: 6px;}/* Posunutí textu po najetí myší */
+#menu li ul li:first-child {border-top: 2px solid Navy;}
+#menu li ul li:last-child {border-bottom: 2px solid DarkGreen;}
+
+/* ----- RIGHT MENU ----- */
+#rightmenu {position: absolute; top: 240px; left: 785px; width: 280px; background-color: lightgrey; border: 2px solid white; box-shadow: rgb(56, 56, 56) 4px 6px 10px;}
+#rightmenu ul {list-style: none; margin: 0px; padding-left: 30px; width: 220px;}
+#rightmenu .normal_list li a {position: relative; left: 20px;}
+#rightmenu .normal_list li {margin-bottom: 5px;}
+#rightmenu ul:last-child {margin-bottom: 20px;}
+#rightmenu ul .list_title {font-size: 18px; font-weight: bold; color: black; border-bottom: 1px solid grey; margin-bottom: 10px; margin-top: 20px;}
+#rightmenu ul li a {text-decoration: none; color: darkblue; font-size: 15px;}
+#rightmenu ul li a:hover {text-decoration: underline;}
+.login_form1 {position: relative; left: 47px;}
+.login_form2 {margin-top: 5px;}
+
+/* ----- TEXT ----- */
+#text2 {position: absolute; top: 240px; left: 15px; width: 750px; z-index: -3;}
+#text {background-color: white; border-radius: 10px; box-shadow: rgb(56, 56, 56) 4px 6px 10px; width: 750px; max-width: 750px; margin-top: 0px;}
+#text h3 {margin-top: 0px; padding: 15px;}
+
+/* ----- NEWS ----- */
+#text2_news {position: absolute; top: 219px; left: 15px; width: 750px; z-index: -3;}
+.article a, .article2 h1 {position: relative; left: 20px; top: 20px; font-family: Arial, Helvetica, sans-serif; color: rgb(211, 47, 47); font-weight: bold;}
+.article p, .article2 p {position: relative; left: 20px; top: 10px; width: 710px; max-width: 710px; color: DimGray;}
+.article .date, .article2 .date {position: relative; top: 0px; font-style: italic;}
+#pagelist {text-align: center;}
+.blue {color: blue;}
+.no-decoration {text-decoration: none;}
+
+/* ----- CALENDAR ----- */
+#calendar {margin: auto; text-align: center;}
+#calendar h1 a {text-decoration: none; font-family: Arial, Helvetica, sans-serif; color: rgb(221, 0, 0); font-weight: normal;}
+.subcalendar th {font: bold 11px/20px “Trebuchet MS”, Verdana, Arial, Helvetica, sans-serif; color: #545e69; background-color: #d7dddc; border: 1px solid #8da1bc;}
+.subcalendar td {text-align: center; width: 22px; height: 22px; padding: 0px; border: 1px solid #8da1bc; background: white; color: #545e69;}
+.subcalendar {border-collapse: collapse;}
+.subcalendar td a {text-decoration: none; font-weight: bold; display: block; color: black; background-color: #ECECEC; padding: 3px;}
+.subcalendar td a:hover {color: black; background: yellow;}
+.subcalendar .month a {background-color: #7A7A7A; color: white; font-weight: bold; width: 210;}
+.subcalendar .month a:hover {background-color: #B9B9B9; color: black;}
+.subcalendar .notice {background-color: rgb(255, 89, 89);}
+.subcalendar .notice:hover {background-color: orange;}
+.subcalendar .show_week, .subcalendar .show_week a{width: 5px; background-color: rgb(168, 255, 165);}
+.subcalendar .show_week:hover, .subcalendar .show_week:hover a, .subcalendar .show_week:hover ~ td a {background-color: rgb(0, 211, 0);}
+.subcalendar .show_week:hover ~ td .notice {background-color: rgb(206, 224, 0);}
+#cal_month {margin-left: 10px; position: relative; top: 10px; border-collapse: collapse; width: 730px;}
+#cal_month ul {padding-left: 20px;}
+#cal_month td {padding-left: 15px; border: 1px solid black; background-color: rgb(207, 255, 207);}
+#cal_month_h1 a {text-decoration: none; font-family: Arial, Helvetica, sans-serif; color: rgb(221, 0, 0); font-weight: normal;}
+#cal_month_h1 {margin: auto; text-align: center;}
+#cal_month .normal {width: 20px; background-color: #ECECEC; text-align: center; padding: 10px; font-weight: bold;}
+#cal_month .notice {background-color: rgb(255, 89, 89); text-align: center; padding: 10px; font-weight: bold; vertical-align: top;}
+#cal_month .normal a, #cal_month .notice a {text-decoration: none; color: rgb(37, 37, 37); display: block;}
+#cal_month .pink2 {background-color: rgb(168, 255, 165);}
+#cal_day {margin-left: 10px; position: relative; top: 10px; border-collapse: collapse; width: 730px;}
+#cal_day ul {padding-left: 30px;}
+#cal_day td {border: 1px solid black; background-color: #FFDE96;}
+#cal_day .nd {border: 1px solid black; background-color: #FFCF66;}
+#cal_day th {border: 1px solid black; width: 50px; text-align: center; background-color: #ECECEC;}
+#cal_day .notice {width: 50px; text-align: center; background-color: rgb(255, 89, 89);}
+
+#validator {position: relative; left: 28px;}
+
+/* ----- FOOTER ----- */
+#footer {color: grey; text-align: center;}

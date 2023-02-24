@@ -1,0 +1,211 @@
+<html>
+<header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+	}
+	
+	#header {
+		width: 100%;
+		position: fixed;
+		height: 120px;
+		/*background-color: #00F8FD;*/
+		background-color: rgba(255, 255, 255, 0);
+		box-shadow: none;
+		z-index: 10;
+		/*position: fixed;
+		
+		width: 100%;*/
+		display: block;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+		
+		
+		
+		
+	}
+	#header.scrolled {
+		
+		
+		height: 3rem;
+		background-color: rgba(255, 255, 255, 0.9) !important;
+		/*box-shadow: 0 0.05rem 1rem rgba(0, 0, 0, 0.15) !important;*/
+		
+		border-bottom: 1px solid rgb(204, 204, 204);
+		box-shadow: rgb(102, 102, 102) 0px 3px 5px -2px;
+	}
+	
+	#header #headerLogo h1 { /*#headerLogo*/
+		padding-left: 15rem;
+		padding-right: 15rem;
+	
+	
+		font-size: 2rem;
+		line-height: 2rem;
+		margin: 0;
+		text-transform: uppercase;
+		transition: all 0.5s ease;
+		
+		position: relative;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+	#header.scrolled #headerLogo h1 {
+		color: #444 !important;
+		font-size: 1.6rem !important;
+	}
+	@media only all and (max-width: 59.938em) {
+		#header #navbar .navigation {
+			display: none; 
+		}
+	}
+	@media only all and (max-width: 59.938em) {
+        #header #navbar .panel-activation {
+			display: inline-block; 
+		} 
+	}
+	
+	#headerMenu {
+		display: none;
+	}
+	
+	#headerMenu.scrolled {
+		display: block;
+		float: right;
+		margin: 0;
+		padding-left: 15rem;
+		padding-right: 15rem;
+	}
+
+	#body {
+		height:2200px;
+		background-color: red;
+		width: 100%;
+	}
+	
+	#bodyHeader {
+		background-image: url(pitch1.jpg);
+		background-size: cover;
+		background-position: center;
+		display: block;
+		height: 400px;
+		width: 100%;
+		/*background-color: green;*/
+		
+		/*display: flex;
+		justify-content: end;*/
+		/*align-items: end;*/
+	}
+	
+	#bodyMenu {
+		width: 100%;
+		padding: 8px 0 0 0;
+		margin: -45px 0 0 0;
+		position: absolute;
+		z-index: 1;
+		float: right;
+ 
+	}
+	#menu {
+		float: right;
+		margin: 0;
+		padding-left: 15rem;
+		padding-right: 15rem;
+	}
+
+
+	#bodyContent {
+		width: 1111px;
+		height: 80%;
+		background-color: green;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#footer {
+		height: 35px;
+		width: 100%;
+		background-color: #00F8FD;
+	}
+	</style>
+	<script>
+		var addEvent = function(object, type, callback) {
+			if (object == null || typeof(object) == 'undefined') return;
+			if (object.addEventListener) {
+				object.addEventListener(type, callback, false);
+			} else if (object.attachEvent) {
+				object.attachEvent("on" + type, callback);
+			} else {
+				object["on"+type] = callback;
+			}
+		};
+		
+		// ON LOAD
+		addEvent(window, "load", function(e) {
+		
+			addEvent(document.getElementById("footer"), "click", function(e) {
+				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = 0;
+			});
+		});
+		
+		// RESIZE WINDOW
+		addEvent(window, "resize", function(e) {
+			console.log("resize");
+		});
+		
+		// ON SCROLL EVENTS
+		addEvent(window, "scroll", function(e) {
+			var isTouch = window.DocumentTouch && document instanceof DocumentTouch;
+			if (!isTouch){
+				scrollHeader();
+			}
+		});
+		
+		// TOUCH SCROLL
+		addEvent(window, "touchmove", function(e) {
+			scrollHeader();
+		});
+		
+		
+		// FUNCTIONS
+		
+		function scrollHeader() {
+			// Has scrolled class on header
+			var scroll = this.scrollY;
+			
+			if(scroll > 75){
+				document.getElementById("header").classList.add("scrolled");
+			} else {
+				document.getElementById("header").classList.remove("scrolled");
+			}
+			
+			if(scroll > 350){
+				document.getElementById("headerMenu").classList.add("scrolled");
+			} else {
+				document.getElementById("headerMenu").classList.remove("scrolled");
+			}
+		}
+	</script>
+</header>
+<body>
+    <div id="header">
+		<span id="headerLogo"><h1>F3LDA.NET</h1></span>
+		<span id="headerMenu">Home | Blog | About</span>
+	</div>
+    <div id="body">
+		<div id="bodyHeader"><h1 style="margin:0; text-align: center; padding-top: 13rem;">Motto<!---Work harder and smarter<br>for future generations---></h1></div>
+		<div id="bodyMenu"><span id="menu">Home | Blog | About</span></div>
+		<div id="bodyContent"></div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

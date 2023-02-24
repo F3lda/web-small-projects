@@ -1,0 +1,599 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en"><!--<html lang="cs-cz">-->
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+	<title>The HTML5 Herald TODO</title>
+	<meta name="description" content="The HTML5 Herald">
+	<meta name="author" content="GVID">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Databáze fotografií a hodnocení školních obědů ze školní jídelny Gymnázia Vídeňská 47" />
+    <meta name="keywords" content="databáze, obědy, jídla, seznam jídel, gvid, Gymnázium, Vídeňská, hodnocení, školní jídelna" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<style> 
+	/* Sources: https://codepen.io/wideckop/pen/ZOgOPq https://codepen.io/cbracco/pen/zekgx */
+	
+	
+	/**
+	* Page Styles
+	*/
+
+	html {
+		height: 100%;
+		box-sizing: border-box;
+	}
+
+	*,
+	*:before,
+	*:after {
+		box-sizing: inherit;
+	}
+
+	body {
+		position: relative;
+		margin: 0;
+		padding-bottom: 6rem;
+		min-height: 100%;
+		font-family: "Helvetica Neue", Arial, sans-serif;
+		font-family: sans-serif;
+		font-size: 1em;
+		color: #333;
+	}
+	
+	a {
+		text-decoration: none;
+		color: inherit;
+	} 
+	
+	em {
+		font-style: normal;
+	}
+
+	.content {
+		margin: 0 auto;
+		/* max-width: 640px; */
+		/* width: 94%; */
+		/* padding-top: 4em; */
+		padding: 64px;
+		padding-top: -webkit-calc(4em + 64px);
+		padding-top: calc(4em + 64px);
+		
+	}
+
+	.content h1 {
+		margin-top: 0;
+		font-size: 1.4em;
+	}
+
+
+	/**
+	* Header Styles
+	*/
+	
+	.header{
+		z-index: 2;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 4em;
+		background: #192b3c;
+		text-align: center;
+		padding: 1rem;
+		color: #f1f1f1;
+	}
+	
+	.header-vertical-center .header-horizontal-center {
+		margin: 0;
+		position: absolute;
+		left: 50%; /* horizontal center */
+		top: 50%; /* vertical center */
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		text-align: center;
+		width: 100%;
+	}
+	
+	
+	/**
+	* Footer Styles
+	*/
+
+	.footer {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 0;
+		padding: 1rem;
+		background-color: #efefef;
+		text-align: center;
+	}
+	
+	
+	/**
+	* Layout
+	*/
+	
+	.s-layout {
+		display: flex;
+		width: 100%;
+		min-height: 100%;
+	}
+
+	/* Sidebar */
+	.s-sidebar__trigger {
+		z-index: 3;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 4em;
+		height: 4em;
+		background: #192b3c;
+	}
+
+	.s-sidebar__trigger > i {
+		display: inline-block;
+		margin: 1.5em 0 0 1.5em;
+		color: #f07ab0;
+	}
+
+	.s-sidebar__nav {
+		z-index: 1; 
+		position: fixed;
+		top: 64px;
+		left: -15em;
+		height: calc(100vh - 64px);
+		/* overflow: hidden; */
+		/* overflow-y: scroll; */
+		overflow-x: hidden;
+		transition: all .3s ease-in;
+		width: 15em;
+		/* height: 100%; */
+		background: #243e56;
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.s-sidebar__nav:hover,
+	.s-sidebar__nav:focus,
+	.s-sidebar__trigger:focus + .s-sidebar__nav,
+	.s-sidebar__trigger:hover + .s-sidebar__nav {
+		left: 0;
+	}
+
+	.s-sidebar__nav ul {
+		position: absolute;
+		top: 0; /* 4em */
+		left: 0;
+		margin: 0;
+		padding: 0;
+		width: 15em;
+	}
+
+	.s-sidebar__nav ul li {
+		width: 100%;
+	}
+
+	.s-sidebar__nav-link {
+		position: relative;
+		display: inline-block;
+		width: 100%;
+		height: 4em;
+	}
+
+	.s-sidebar__nav-link em {
+		position: absolute;
+		top: 50%;
+		left: 4em;
+		transform: translateY(-50%);
+	}
+
+	.s-sidebar__nav-link:hover, .s-sidebar__nav-link:focus, .s-sidebar__nav-link:target, .selected-link {
+		background: #4d6276;
+	}
+
+	.s-sidebar__nav-link > i {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: inline-block;
+		width: 4em;
+		height: 4em;
+	}
+
+	.s-sidebar__nav-link > i::before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	@media (max-width: 42em) {
+		.header-vertical-center .header-horizontal-center {
+			padding-left: 64px;
+		}
+		
+		.content {
+		    padding-left: 1em;
+		    padding-right: 1em;
+		}
+	}
+
+	/* Mobile First */
+	@media (min-width: 42em) {
+		/* Sidebar */
+		.s-sidebar__trigger {
+			width: 4em;
+		}
+
+		.s-sidebar__nav {
+			width: 4em;
+			left: 0;
+		}
+
+		.content, .footer {
+			margin-left: 4em;
+		}
+		
+		.content {
+		    padding-left: 1.5em;
+		    padding-right: 1.5em;
+		}
+
+		.header-vertical-center .header-horizontal-center {
+			padding-left: 64px;
+		}
+
+		.s-sidebar__nav:hover,
+		.s-sidebar__nav:focus,
+		.s-sidebar__trigger:hover + .s-sidebar__nav,
+		.s-sidebar__trigger:focus + .s-sidebar__nav {
+			width: 15em;
+		}
+	}
+
+	@media (min-width: 68em) {
+		/* Sidebar */
+		.s-sidebar__trigger {
+			display: none
+		}
+
+		.s-sidebar__nav {
+			width: 15em;
+		}
+
+		.content, .footer {
+			margin-left: 15em;
+		}
+		
+		.content {
+		    padding-left: 2em;
+		    padding-right: 2em;
+		}
+
+		.header-vertical-center .header-horizontal-center {
+			padding-left: 0; /* 64px */
+		}
+
+		.s-sidebar__nav ul {
+			/* top: 1.3em; */
+		}
+	}
+
+
+	/**
+	* Scrollbars
+	*/
+	
+	/* width */
+	::-webkit-scrollbar {
+		width: 3px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: #f1f1f1; 
+	}
+	 
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #888; 
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555; 
+	}
+	</style>
+	<script>	
+	function jumpToElement(overflowElement,elem) {
+		var top = elem.offsetTop;			//Getting Y of target element
+		overflowElement.scrollTo(0, top);	//Window or Element
+	}
+	
+	function getQueryParams() {
+		var pole = window.location.search.substr(1).split("&"); 
+		// window.location.search - after questionmark
+		// substr(1) - delete first char (questionmark)
+		
+		var httpGetVars = new Array();
+		for(i = 0; i < pole.length; i++){
+			httpGetVars[pole[i].split("=")[0]] = decodeURIComponent(pole[i].split("=")[1]);
+		}
+		
+		return httpGetVars;
+	}
+	
+	function toggleClass(element,clas) {
+		if (element.classList) { 
+			element.classList.toggle(clas);
+		} else {
+			var classes = element.className.split(" ");
+			var i = classes.indexOf(clas);
+
+			if (i >= 0) {
+				classes.splice(i, 1);
+			} else {
+				classes.push(clas);
+			}
+			element.className = classes.join(" "); 
+		}
+	}
+	
+	function addClass(element,clas) {
+		var classes = element.className.split(" ");
+		if (classes.indexOf(clas) == -1) {
+			toggleClass(element,clas);
+		}
+	}
+	
+	function removeClass(element,clas) {
+		var classes = element.className.split(" ");
+		if (classes.indexOf(clas) != -1) {
+			toggleClass(element,clas);
+		}
+	}
+	
+	function removeClassAll(elements,clas) {
+		var elemts = [...elements];
+		var elemt = function(el) {
+			removeClass(el,clas);
+		}
+		elemts.forEach(elemt);
+	}
+	
+	var addEvent = function(object, type, callback) {
+		if (object == null || typeof(object) == 'undefined') return;
+		if (object.addEventListener) {
+			object.addEventListener(type, callback, false);
+		} else if (object.attachEvent) {
+			object.attachEvent("on" + type, callback);
+		} else {
+			object["on"+type] = callback;
+		}
+	};
+	
+	// ON LOAD
+	addEvent(window, "load", function(e) {
+		var anchors = document.getElementsByTagName('a');
+        for(var i = 0; i < anchors.length; i++) {
+            var anchor = anchors[i];
+			var classes = anchor.className.split(" ");
+			if (classes.indexOf("s-sidebar__nav-link") != -1) {
+				addEvent(anchor, "click", function(e) {
+					removeClassAll(document.getElementsByTagName('a'),"selected-link");
+					var elm = e.target;
+					while(elm != null && elm.nodeName != 'A') {
+						elm = elm.parentNode;
+					}
+					addClass(elm,"selected-link");
+				});
+			}
+        }
+		
+		var urlParams = getQueryParams();
+		if(urlParams["obed"] != null){
+			removeClassAll(document.getElementsByTagName('a'),"selected-link");
+			jumpToElement(document.getElementsByClassName("s-sidebar__nav")[0],document.getElementById(urlParams["obed"]));
+			addClass(document.getElementById(urlParams["obed"]),"selected-link");
+		}
+		
+		console.log("LOADED");
+	});
+	</script>
+</head>
+
+<body>
+	<div class="header">
+		<div class="header-vertical-center">
+			<h1 class="header-horizontal-center"><a href="./index.html">Obědy na GVIDu</a></h1>
+		</div>
+	</div>
+	
+	<div class="content">
+		<!-- Sidebar -->
+		<div class="s-layout">
+			<div class="s-layout__sidebar">
+				<a class="s-sidebar__trigger" href="#0">
+					<i class="fa fa-bars"></i>
+				</a>
+
+				<nav class="s-sidebar__nav">
+					<ul>
+						<li>
+							<a class="s-sidebar__nav-link selected-link" href="#0">
+								<i class="fa fa-home"></i><em>Home</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-user"></i><em>My Profile</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<p style="width: 100%"><hr></p>
+						<h2 style="margin-left: 1em;">Lunches</h2>
+						<p style="width: 100%"><hr></p>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-utensils"></i><em>food</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-cookie"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-hamburger"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-cookie-bite"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a id="zalozka1" class="s-sidebar__nav-link" href="#zalozka1">
+								<i class="fa fa-camera"></i><em>Zalozka</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+						<li>
+							<a class="s-sidebar__nav-link" href="#0">
+								<i class="fa fa-camera"></i><em>Camera</em>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		
+		
+		<!-- Content -->
+		<h1>CSS “Always on the bottom” Footer</h1>
+
+		<p>I often find myself designing a website where the footer must rest at the bottom of the page, even if the content above it is too short to push it to the bottom of the viewport naturally.</p>
+
+		<p>However, if the content is taller than the user’s viewport, then the footer should disappear from view as it would normally, resting at the bottom of the page (not fixed to the viewport).</p>
+
+		<p>If you know the height of the footer, then you should set it explicitly, and set the bottom padding of the footer’s parent element to be the same value (or larger if you want some spacing).</p>
+
+		<p>This is to prevent the footer from overlapping the content above it, since it is being removed from the document flow with <code>position: absolute;</code>.</p>
+	</div>
+
+	<div class="footer">This footer will always be positioned at the bottom of the page, but <strong>not fixed</strong>. &mdash; 29. 3. 2019</div>
+</body>
+</html>
